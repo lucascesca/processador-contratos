@@ -34,8 +34,8 @@ public class Program {
         service.processContract(contract, numberOfInstallments);
 
         System.out.println("PARCELAS:");
-        for (Installment i : contract.getInstallments()) {
-            System.out.println(i.getDueDate() + " - " + i.getAmount());
+        for (Installment installment : contract.getInstallments()) {
+            System.out.println(installment);
         }
 
         sc.close();
