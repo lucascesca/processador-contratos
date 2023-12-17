@@ -16,10 +16,9 @@ public class ContractService {
         double basicValue = contract.getTotalValue() / months;
         for (int i = 1; i <= months; i++) {
             LocalDate dueDate = contract.getDate().plusMonths(i);
-            double intValue = onlinePaymentService.interest(basicValue, months);
-            double feeValue = onlinePaymentService.paymentFee(intValue);
-            basicValue = basicValue + intValue + feeValue;
-            contract.getInstallments().add(new Installment(dueDate, basicValue));
+            double interestValue = onlinePaymentService.interest(basicValue, i);
+            double feeValue = onlinePaymentService.paymentFee(basicValue + interestValue);
+            contract.getInstallments().add(new Installment(dueDate, basicValue + interestValue + feeValue));
         }
     }
 }
